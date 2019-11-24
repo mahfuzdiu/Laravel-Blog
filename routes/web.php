@@ -13,4 +13,5 @@
 
 Route::get('/', 'HomeController@index')->name('home');
 Route::get('/contact', 'HomeController@contact')->name('contact');
-
+Route::get('/posts', 'HomeController@getPosts')->name('posts');
+Route::get('/categories', 'HomeController@getCategories')->name('categories');

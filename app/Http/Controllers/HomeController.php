@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Category;
+use App\Post;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -19,10 +21,31 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('frontend.home');
+        $posts = $this->getPosts();
+        $categories = $this->getCategories();
+        return view('frontend.home', compact('posts', 'categories'));
     }
 
+    /**
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function contact(){
         return view('frontend.contact');
+    }
+
+    /**
+     * @return false|string
+     */
+    public function getPosts(){
+        $posts = Post::get();
+        return $posts;
+    }
+
+    /**
+     * @return false|string
+     */
+    public function getCategories(){
+        $categories = Category::get();
+        return $categories;
     }
 }
